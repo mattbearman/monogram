@@ -4,8 +4,6 @@ require_relative 'monogram/avatar'
 require_relative 'monogram/config'
 
 class Monogram
-  @@config = Config.new
-
   def initialize(initials: nil, name: nil, background: nil, shape: nil)
     @initials = initials
     @name = name
@@ -32,11 +30,11 @@ class Monogram
   end
 
   def self.config
-    @@config
+    @config ||= Config.new
   end
 
   def self.configure
-    yield @@config
+    yield config
   end
 
   private
@@ -53,7 +51,7 @@ class Monogram
   end
 
   def config
-    @@config
+    self.class.config
   end
 
   def initials
