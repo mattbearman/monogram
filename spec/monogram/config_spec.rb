@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Supertramp::Config do
+RSpec.describe Monogram::Config do
   let(:config) { described_class.new }
 
   describe 'uppercase' do

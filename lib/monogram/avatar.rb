@@ -3,7 +3,7 @@
 require 'erb'
 require 'base64'
 
-class Supertramp
+class Monogram
   class Avatar
     SHAPES = [
       SQUARE = 'square',

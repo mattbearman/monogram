@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Supertramp do
+RSpec.describe Monogram do
   before do
     allow(Monogram::Avatar).to receive(:new).and_call_original
   end
@@ -76,6 +76,12 @@ RSpec.describe Supertramp do
     before do
       described_class.configure do |config|
         config.colours = %w[red green yellow blue purple]
+      end
+    end
+
+    after do
+      described_class.configure do |config|
+        config.colours = %w[#B91C1C #B45309 #047857 #1D4ED8 #6D28D9]
       end
     end
 
