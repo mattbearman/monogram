@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Supertramp::Avatar do
+RSpec.describe Monogram::Avatar do
   describe '#svg' do
     context 'when shape is square' do
       subject { described_class.new(initials: 'MB', background: 'very-very-very-dark-blue', shape: 'square').svg }

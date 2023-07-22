@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative 'lib/supertramp/version'
+require_relative 'lib/monogram/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'supertramp'
-  spec.version       = Supertramp::VERSION
+  spec.name          = 'monogram'
+  spec.version       = Monogram::VERSION
   spec.authors       = ['Matt Bearman']
   spec.email         = ['matt@mattbearman.com']
 
   spec.summary       = 'Creates SVG letter avatars on the fly with consistent colours.'
-  spec.homepage      = 'https://github.com/mattbearman/supertramp'
+  spec.homepage      = 'https://github.com/mattbearman/monogram'
   spec.license       = 'MIT'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
 

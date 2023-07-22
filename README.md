@@ -1,10 +1,9 @@
 
-[![Build](https://github.com/mattbearman/supertramp/actions/workflows/ci.yml/badge.svg)](https://github.com/mattbearman/supertramp/actions/workflows/ci.yml) [![Gem Version](https://badge.fury.io/rb/supertramp.svg)](https://badge.fury.io/rb/supertramp)
-# 🔤 Supertramp
+[![Build](https://github.com/mattbearman/monogram/actions/workflows/ci.yml/badge.svg)](https://github.com/mattbearman/monogram/actions/workflows/ci.yml) [![Gem Version](https://badge.fury.io/rb/monogram.svg)](https://badge.fury.io/rb/monogram)
+# 🔤 Monogram
 
- > But please, tell me who I am
- >
- > _- Supertramp, The Logical Song_
+> [NOTE]\
+> Monogram was previously called Supertramp, however that was a stupid name, so I changed it. The [Supertramp](https://github.com/mattbearman/supertramp) gem still exists but will not be getting any more updates, so you should switch to Monogram. Changing to Monogram is super easy, you can even still use the Supertramp constant if you want. See [Switching from Supertramp](#switching-from-supertramp) for full details.
 
 Generate default avatars for your users, containing their initials, with a consistent background colour. Avatars are created as SVGs on the fly, with the background colour chosen based on the initials, meaning the background will stay the same through reloads.
 
@@ -14,15 +13,23 @@ Extracted from [PresentDay](https://www.mypresentday.com), inspired by https://k
 
 ## Installation
 
-`gem install supertramp`
+```sh
+bundle add monogram
+```
+
+Or without bundler:
+
+```sh
+gem install monogram
+```
 
 ## Usage
 
 ### String output
 
 ```ruby
-# Create an instance of Supertramp, and then read it as a string
-avatar = Supertramp.new(name: 'Matt Bearman')
+# Create an instance of Monogram, and then read it as a string
+avatar = Monogram.new(name: 'Matt Bearman')
 
 avatar.to_s
 # => <?xml ... /svg>
@@ -31,7 +38,7 @@ avatar.to_s
 # => <?xml ... /svg>
 
 # .svg convenience method
-Supertramp.svg(name: 'Matt Bearman')
+Monogram.svg(name: 'Matt Bearman')
 # => <?xml ... /svg>
 
 # When using in a Rails template, add raw to stop the SVG XML being escaped
@@ -42,14 +49,14 @@ Supertramp.svg(name: 'Matt Bearman')
 
 ```ruby
 # To generate a data URL that can be used in image tags
-# Create an instance of Supertramp, and then call its data_url method
-avatar = Supertramp.new(name: 'Matt Bearman')
+# Create an instance of Monogram, and then call its data_url method
+avatar = Monogram.new(name: 'Matt Bearman')
 
 avatar.data_url
 # => data:image/svg+xml;base64,PD94bWwgdmVyc2lv ... wv\ndGV4dD4KPC9zdmc+Cg==
 
 # .data_url convenience method
-Supertramp.data_url(name: 'Matt Bearman')
+Monogram.data_url(name: 'Matt Bearman')
 # => data:image/svg+xml;base64,PD94bWwgdmVyc2lv ... wv\ndGV4dD4KPC9zdmc+Cg==
 ```
 
@@ -78,10 +85,10 @@ The `background` argument can be any valid SVG colour string (eg: 'red', '#ff000
 
 _Optional, default = "square"_
 
-The shape of the avatar, can be one of **"square"**, **"circle"**, or **"rounded"** (a rounded rectangle). To avoid typos you should specify this using the constants defined in the `Supertramp::Avatar` class:
- - `Supertramp::Avatar::SQUARE`
- - `Supertramp::Avatar::CIRCLE`
- - `Supertramp::Avatar::ROUNDED`
+The shape of the avatar, can be one of **"square"**, **"circle"**, or **"rounded"** (a rounded rectangle). To avoid typos you should specify this using the constants defined in the `Monogram::Avatar` class:
+ - `Monogram::Avatar::SQUARE`
+ - `Monogram::Avatar::CIRCLE`
+ - `Monogram::Avatar::ROUNDED`
 
 You can also specify this globally using the `shape` config attribute. This defaults to **"square"**.
 
@@ -89,31 +96,31 @@ You can also specify this globally using the `shape` config attribute. This defa
 
 ```ruby
 # Extracting initials from a name, default shape and colour choice
-Supertramp.new(name: 'Super Tramp').to_s
+Monogram.new(name: 'Super Tramp').to_s
 ```
 ![](examples/st.svg)
 
 ```ruby
 # Specifying initials and shape, default colour choice
-Supertramp.new(initials: 'mb', shape: 'circle').to_s
+Monogram.new(initials: 'mb', shape: 'circle').to_s
 ```
 ![](examples/mb.svg)
 
 ```ruby
 # Single initial
-Supertramp.new(initials: 'Z').to_s
+Monogram.new(initials: 'Z').to_s
 ```
 ![](examples/z.svg)
 
 ```ruby
 # Three initials
-Supertramp.new(name: 'Maynard James Keenan').to_s
+Monogram.new(name: 'Maynard James Keenan').to_s
 ```
 ![](examples/tool.svg)
 
 ```ruby
 # Extracting initials, specifying custom colour, specifying shape as a constant
-Supertramp.new(name: 'custom colour', color: 'rgba(127, 0, 0, 0.8)', shape: Supertramp::Avatar::ROUNDED).to_s
+Monogram.new(name: 'custom colour', color: 'rgba(127, 0, 0, 0.8)', shape: Monogram::Avatar::ROUNDED).to_s
 ```
 ![](examples/cc.svg)
 
@@ -121,18 +128,18 @@ Supertramp.new(name: 'custom colour', color: 'rgba(127, 0, 0, 0.8)', shape: Supe
 
 ## How it works
 
-Outputs an SVG of a square with initials in the center. Initials can either be passed in as `initials`, or extracted from the `name` argument.
+Monogram outputs a square, round or rounded square SVG with initials in the center. Initials can either be passed in as `initials`, or extracted from the `name` argument.
 
-Background colour is chosen using a seeded random based on the initials, so the colour won't change on reload unless the initials also change.
+The background colour is chosen using a seeded random based on the initials, so the colour won't change on reload unless the initials also change.
 
 Text size will be dynamically adjusted to ensure they fit within the shape. There's no limit to how many initials an avatar can have, although three is probably the best maximum.
 
 ## Configuration
 
-Use `Supertramp.configure` to set global config:
+Use `Monogram.configure` to set global config:
 
 ```ruby
-Supertramp.configure do |config|
+Monogram.configure do |config|
   # Array of background colours that can be chosen
   # (Sorry, I'm English, but for my trans-Atlantic neighbours you can also use config.colors 😊)
   # Default: %w[#B91C1C #B45309 #047857 #1D4ED8 #6D28D9]
@@ -144,9 +151,21 @@ Supertramp.configure do |config|
   config.uppercase = false
 
   # The shape of the avatars, see the `shape:` argument for more details
-  config.shape = Supertramp::Avatar::CIRCLE
+  config.shape = Monogram::Avatar::CIRCLE
 end
 ```
+
+## Switching from Supertramp
+
+This gem was previously called **Supertramp**. If you've recently switched from Supertramp to Monogram all you need to do is use the `monogram` gem instead - for backwards compatibilty the `Supertramp` constant has been maintained along side `Monogram`:
+
+```ruby
+# All Monogram methods are also available on Supertramp, eg
+Supertramp.svg(initials: 'mb') == Monogram.svg(initials: 'mb')
+```
+
+> [!WARNING]\
+> The Supertramp constant is depreciated, and will be removed in version 1.0, you should switch to using the Monogram constant as soon as possible
 
 ## Roadmap
 

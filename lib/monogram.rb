@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative 'supertramp/config'
-require_relative 'supertramp/avatar'
+require_relative 'monogram/avatar'
+require_relative 'monogram/config'
 
-class Supertramp
+class Monogram
   @@config = Config.new
 
   def initialize(initials: nil, name: nil, background: nil, shape: nil)
@@ -31,6 +31,10 @@ class Supertramp
     new(**options).data_url
   end
 
+  def self.config
+    @@config
+  end
+
   def self.configure
     yield @@config
   end
@@ -45,7 +49,7 @@ class Supertramp
 
   def validate_arguments
     raise ArgumentError, 'either `initials:` or `name:` must be specified' unless @name || @initials
-    raise ArgumentError, "`shape:` must be one of #{Avatar::SHAPES}" unless Avatar::SHAPES.include?(shape)
+    raise ArgumentError, "`shape:` '#{shape}' is invallid, must be one of #{Avatar::SHAPES}" unless Avatar::SHAPES.include?(shape)
   end
 
   def config
@@ -80,5 +84,15 @@ class Supertramp
 
   def shape
     @shape ||= config.shape
+  end
+end
+
+def Object.const_missing(name)
+  if name == :Supertramp
+    warn '[DEPRECIATION WARNING] The Supertramp constant is deprecated and will be removed in version 1.0. Please use Monogram instead.'
+
+    Monogram
+  else
+    super
   end
 end
