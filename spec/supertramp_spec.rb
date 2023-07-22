@@ -108,14 +108,15 @@ RSpec.describe Supertramp do
       end
     end
 
-    context 'when shape argument is invlalid' do
+    context 'when shape argument is invalid' do
       it 'raises error' do
-        expect { described_class.new(initials: 'ST', shape: 'star') }
-          .to raise_error(ArgumentError, '`shape:` \'star\' is invallid, must be one of ["square", "circle", "rounded"]')
+        expect { described_class.new(initials: 'ST', shape: 'star') }.to raise_error(
+          ArgumentError, '`shape:` \'star\' is invalid, must be one of ["square", "circle", "rounded"]'
+        )
       end
     end
 
-    context 'when shape config is invlalid' do
+    context 'when shape config is invalid' do
       before do
         described_class.configure do |config|
           config.shape = 'pentagram'
@@ -123,8 +124,9 @@ RSpec.describe Supertramp do
       end
 
       it 'raises error' do
-        expect { described_class.new(initials: 'ST') }
-          .to raise_error(ArgumentError, '`shape:` \'pentagram\' is invallid, must be one of ["square", "circle", "rounded"]')
+        expect { described_class.new(initials: 'ST') }.to raise_error(
+          ArgumentError, '`shape:` \'pentagram\' is invalid, must be one of ["square", "circle", "rounded"]'
+        )
       end
     end
   end

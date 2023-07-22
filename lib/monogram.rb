@@ -47,7 +47,10 @@ class Monogram
 
   def validate_arguments
     raise ArgumentError, 'either `initials:` or `name:` must be specified' unless @name || @initials
-    raise ArgumentError, "`shape:` '#{shape}' is invallid, must be one of #{Avatar::SHAPES}" unless Avatar::SHAPES.include?(shape)
+
+    return if Avatar::SHAPES.include?(shape)
+
+    raise ArgumentError, "`shape:` '#{shape}' is invalid, must be one of #{Avatar::SHAPES}"
   end
 
   def config
@@ -87,7 +90,8 @@ end
 
 def Object.const_missing(name)
   if name == :Supertramp
-    warn '[DEPRECIATION WARNING] The Supertramp constant is deprecated and will be removed in version 1.0. Please use Monogram instead.'
+    warn '[DEPRECIATION WARNING] The Supertramp constant is deprecated and will be removed in version 1.0. '\
+         'Please use Monogram instead.'
 
     Monogram
   else
