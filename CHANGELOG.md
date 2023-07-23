@@ -3,7 +3,7 @@
 ## v0.5.0
 _2021-07-28_
 
-First public release
+First public release (as Supertramp)
 
 ## v0.5.1
 _2021-07-28_
@@ -35,3 +35,18 @@ _2022-06-16_
 _2022-06-18_
 
 - Fix wrapper methods in Ruby 3
+## v0.8.2
+_2023-07-22_
+
+- Add warning about impending name change
+## v0.9.0
+_2023-07-22_
+
+- Rename to Monogram
+- Improve config code
+- Add `Monogram.config` accessor to config object
+- Add depreciation warning when using `Supertramp` constant
+## ~~v9.0.0~~ (yanked)
+_2023-07-22_
+
+- Accidentally published v9.0.0 instead of v0.9.0 🤦 Has been yanked from Rubygems
