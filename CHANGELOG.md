@@ -39,14 +39,10 @@ _2022-06-18_
 _2023-07-22_
 
 - Add warning about impending name change
-## v0.9.0
+## v0.9.1
 _2023-07-22_
 
 - Rename to Monogram
 - Improve config code
 - Add `Monogram.config` accessor to config object
 - Add depreciation warning when using `Supertramp` constant
-## ~~v9.0.0~~ (yanked)
-_2023-07-22_
-
-- Accidentally published v9.0.0 instead of v0.9.0 🤦 Has been yanked from Rubygems
