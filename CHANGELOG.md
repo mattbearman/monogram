@@ -46,3 +46,8 @@ _2023-07-22_
 - Improve config code
 - Add `Monogram.config` accessor to config object
 - Add depreciation warning when using `Supertramp` constant
+
+## v0.9.2
+_2023-10-03_
+
+- Fix global random leak (author: @jimeh)
