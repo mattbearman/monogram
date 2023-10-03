@@ -74,8 +74,8 @@ class Monogram
   end
 
   def background_for_initials
-    Random.srand(initials_seed)
-    index = (rand * config.colours.length).floor
+    r = Random.new(initials_seed)
+    index = (r.rand * config.colours.length).floor
     config.colours[index]
   end
 
