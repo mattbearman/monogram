@@ -51,3 +51,8 @@ _2023-07-22_
 _2023-10-03_
 
 - Fix global random leak (author: @jimeh)
+
+## v1.0.0
+
+- **BREAKING** Change default shape to circle
+- **BREAKING** Remove `Supertramp` constant
