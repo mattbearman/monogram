@@ -87,14 +87,3 @@ class Monogram
     @shape ||= config.shape
   end
 end
-
-def Object.const_missing(name)
-  if name == :Supertramp
-    warn '[DEPRECIATION WARNING] The Supertramp constant is deprecated and will be removed in version 1.0. '\
-         'Please use Monogram instead.'
-
-    Monogram
-  else
-    super
-  end
-end
