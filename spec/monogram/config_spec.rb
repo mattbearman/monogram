@@ -31,7 +31,7 @@ RSpec.describe Monogram::Config do
     context 'with the default value' do
       subject { config.shape }
 
-      it { is_expected.to eq('square') }
+      it { is_expected.to eq('circle') }
     end
   end
 end
