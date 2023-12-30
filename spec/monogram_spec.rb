@@ -12,21 +12,21 @@ RSpec.describe Monogram do
   describe '#to_s' do
     it 'creates an instance of Avatar and calls its to_s method' do
       expect(described_class.new(initials: 'st').to_s)
-        .to eq(Monogram::Avatar.new(initials: 'ST', background: '#1D4ED8', shape: 'square').svg)
+        .to eq(Monogram::Avatar.new(initials: 'ST', background: '#1D4ED8', shape: 'circle').svg)
     end
   end
 
   describe '.svg' do
     it 'wraps Avatar#svg' do
       expect(described_class.svg(initials: 'st'))
-        .to eq(Monogram::Avatar.new(initials: 'ST', background: '#1D4ED8', shape: 'square').svg)
+        .to eq(Monogram::Avatar.new(initials: 'ST', background: '#1D4ED8', shape: 'circle').svg)
     end
   end
 
   describe '.data_url' do
     it 'wraps Avatar#data_url' do
       expect(described_class.data_url(name: 'Super Tramp'))
-        .to eq(Monogram::Avatar.new(initials: 'ST', background: '#1D4ED8', shape: 'square').data_url)
+        .to eq(Monogram::Avatar.new(initials: 'ST', background: '#1D4ED8', shape: 'circle').data_url)
     end
   end
 
