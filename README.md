@@ -80,11 +80,11 @@ The `background` argument can be any valid SVG colour string (eg: 'red', '#ff000
 
 #### `shape:` _(string)_
 
-_Optional, default = "square"_
+_Optional, default = "circle"_
 
-The shape of the avatar, can be one of **"square"**, **"circle"**, or **"rounded"** (a rounded rectangle). To avoid typos you should specify this using the constants defined in the `Monogram::Avatar` class:
- - `Monogram::Avatar::SQUARE`
+The shape of the avatar, can be one of **"circle"**, **"square"**, or **"rounded"** (a rounded rectangle). To avoid typos you should specify this using the constants defined in the `Monogram::Avatar` class:
  - `Monogram::Avatar::CIRCLE`
+ - `Monogram::Avatar::SQUARE`
  - `Monogram::Avatar::ROUNDED`
 
 You can also specify this globally using the `shape` config attribute. This defaults to **"circle"**.
@@ -124,7 +124,7 @@ Monogram.new(name: 'custom colour', color: 'rgba(127, 0, 0, 0.8)', shape: 'round
 
 ## How it works
 
-Monogram outputs a square, round or rounded square SVG with initials in the center. Initials can either be passed in as `initials`, or extracted from the `name` argument.
+Monogram outputs a round, square or rounded square SVG with initials in the center. Initials can either be passed in as `initials`, or extracted from the `name` argument.
 
 The background colour is chosen using a seeded random based on the initials, so the colour won't change on reload unless the initials also change.
 
